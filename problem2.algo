@@ -1,0 +1,44 @@
+ALGORITHM DotProductProcedure
+
+PROCEDURE dot_product(v1, v2: Arrays of Real; n: Integer; OUT ps: Real)
+
+VAR
+    i: Integer;
+
+BEGIN
+    ps := 0
+    FOR i FROM 0 TO (n-1) DO
+        ps := ps + (v1[i] * v2[i])
+    END_FOR
+END
+
+ALGORITHM CheckOrthogonalVectors
+
+VAR
+    n, i, j: Integer;
+    vectorPairs: Array [0, ..., n-1, 0, ..., 1] of Real;  // 2D array for n pairs of vectors
+    result: Boolean;
+
+BEGIN
+
+    Write ("Enter the number of vector pairs (n): ")
+    Read (n)
+
+    FOR i FROM 0 TO (n-1) DO
+        FOR j FROM 0 TO 1 DO
+            Write ("Enter vector element "j+1" for vector pair "i+1": ")
+            Read (vectorPairs[i, j])
+        END_FOR
+    END_FOR
+
+    FOR i FROM 0 TO (n-1) DO
+        FOR j FROM (i+1) TO (n-1) DO
+            DotProductProcedure(vectorPairs[i], vectorPairs[j], 2, result)
+            IF result THEN
+                Write ("Vector pair "i+1" and vector pair "j+1" are orthogonal.")
+            ELSE
+                Write ("Vector pair "i+1" and vector pair "j+1" are not orthogonal.")
+            END_IF
+        END_FOR
+    END_FOR
+END

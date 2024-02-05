@@ -1,0 +1,34 @@
+ALGORITHM SumOfDistinctElements
+
+VAR
+
+    set1, set2 : Arrays of Integers;
+    n1, n2, distinctSum : Integer;
+    distinctElements : Set of Integers;
+
+BEGIN
+    
+    Write ("Enter size of Set 1")
+    Read (n1)
+    FOR i FROM 0 TO (n1-1) DO
+        Write ("Enter element for Set 1")
+        Read (set1[i])
+        distinctElements := distinctElements UNION {set1[i]}
+    END_FOR
+
+    Write ("Enter size of Set 2")
+    Read (n2)
+    FOR i FROM 0 TO (n2-1) DO
+        Write ("Enter element for Set 2")
+        Read (set2[i])
+        distinctElements := distinctElements UNION {set2[i]}
+    END_FOR
+
+    distinctSum := 0
+    FOR element IN distinctElements DO
+        distinctSum := distinctSum + element
+    END_FOR
+
+    Write ("The sum of distinct elements from Set 1 and Set 2 is: ")
+    Write (distinctSum)
+END
